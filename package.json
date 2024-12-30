@@ -10,7 +10,7 @@
     "@types/restify": "^8.5.12",
     "axios": "^0.21.1",
     "botbuilder": "^4.14.0",
-    "restify": "^8.5.1"
+    "restify": "^8.6.1"
   },
   "devDependencies": {
     "ts-node": "^10.4.0",
