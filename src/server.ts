@@ -1,5 +1,5 @@
 import * as restify from 'restify';
-import { BotFrameworkAdapter } from 'botbuilder';
+import { CloudAdapter, ConfigurationServiceClientCredentialFactory, ConfigurationBotFrameworkAuthentication } from 'botbuilder';
 import { MyBot } from './bot';
 
 // Create server
@@ -9,10 +9,14 @@ server.listen(process.env.port || process.env.PORT || 3978, () => {
 });
 
 // Create adapter
-const adapter = new BotFrameworkAdapter({
-    appId: process.env.MicrosoftAppId,
-    appPassword: process.env.MicrosoftAppPassword
+const credentialsFactory = new ConfigurationServiceClientCredentialFactory({
+    MicrosoftAppId: process.env.MicrosoftAppId,
+    MicrosoftAppPassword: process.env.MicrosoftAppPassword,
+    MicrosoftAppType: process.env.MicrosoftAppType,
+    MicrosoftAppTenantId: process.env.MicrosoftAppTenantId
 });
+const botFrameworkAuthentication = new ConfigurationBotFrameworkAuthentication({}, credentialsFactory);
+const adapter = new CloudAdapter(botFrameworkAuthentication);
 
 // Catch-all for errors
 adapter.onTurnError = async (context, error) => {
@@ -25,7 +29,7 @@ const myBot = new MyBot();
 
 // Listen for incoming requests
 server.post('/api/messages', (req, res) => {
-    adapter.processActivity(req, res, async (context) => {
+    adapter.process(req, res, async (context) => {
         await myBot.run(context);
     });
 });
