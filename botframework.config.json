@@ -1,0 +1,17 @@
+{
+  "name": "bot-framework",
+  "description": "A chatbot built using Microsoft Bot Framework",
+  "services": [
+    {
+      "type": "endpoint",
+      "name": "development",
+      "endpoint": "http://localhost:3978/api/messages",
+      "appId": "",
+      "appPassword": ""
+    }
+  ],
+  "settings": {
+    "autoSave": true,
+    "logLevel": "info"
+  }
+}
