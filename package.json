@@ -1,0 +1,18 @@
+{
+  "name": "bot-framework",
+  "version": "1.0.0",
+  "description": "A chatbot built using Microsoft Bot Framework",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "botbuilder": "^4.11.0",
+    "restify": "^8.5.1"
+  },
+  "devDependencies": {
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}
